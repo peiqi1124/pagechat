@@ -1,28 +1,34 @@
 <template>
   <div class="Views">
-    <video class="video-content" controls autoplay>
-      <!-- <source src="movie.mp4" type="video/mp4" />
+    <div class="content">
+      <video class="video-content" controls autoplay>
+        <!-- <source src="movie.mp4" type="video/mp4" />
       <source src="movie.ogg" type="video/ogg" /> -->
-      您的浏览器不支持,请升级或更换浏览器
-    </video>
+        您的浏览器不支持,请升级或更换浏览器
+      </video>
+      <ul class="video-items">
+        <li class="item" :class="{ active: indexs == index }" v-for="(item, index) in 5" :key="index" @click="setActive(index)">
+          <img src="" alt="" />
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
 import "../../flv/flv.js";
+import { ref } from "vue";
 export default {
   name: "Views",
-  mounted() {
-    if (flvjs.isSupported()) {
-      let videoElement = document.querySelector(".video-content");
-      let flvPlayer = flvjs.createPlayer({
-        type: "flv",
-        url: "http://1011.hlsplay.aodianyun.com/demo/game.flv",
-      });
-      flvPlayer.attachMediaElement(videoElement);
-      flvPlayer.load();
-      // flvPlayer.play();
-    }
+  data() {
+    return {
+      indexs: 0,
+    };
+  },
+  methods: {
+    setActive(index) {
+      this.indexs = index;
+    },
   },
 };
 </script>
@@ -35,10 +41,32 @@ export default {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   margin-top: 85px;
-
-  .video-content {
-    @include set-width-height(1000px, 96%);
+  .content {
+    margin: 0 auto;
     margin-top: 10px;
+    @include set-width-height(1200px, 612px);
+    padding: 0 5px;
+    @include Content-mid;
+    background: black;
+  }
+  .video-content {
+    @include set-width-height(1000px, 600px);
+  }
+  .video-items {
+    @include set-width-height(200px, 600px);
+    @include align-center;
+  }
+  .item {
+    @include set-width-height(190px, 110px);
+  }
+  .item:hover {
+    border: 1px solid red;
+  }
+  .item > img {
+    @include set-width-height(100%, 100%);
+  }
+  .active {
+    border: 1px solid red;
   }
 }
 </style>

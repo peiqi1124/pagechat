@@ -16,6 +16,14 @@ $blue: rgb(83, 95, 163);
   align-items: center;
   // @include Content-align-items-center;
 }
+@mixin align-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  // @include align-center;
+}
+
 @mixin set-width-height($width, $height) {
   width: $width;
   height: $height;

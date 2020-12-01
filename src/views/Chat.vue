@@ -1,6 +1,6 @@
 <template>
   <div class="Chat">
-    <!-- <router-view name="Chat" v-if="loader"></router-view> -->
+    <ChatRoom></ChatRoom>
   </div>
 </template>
 
@@ -9,9 +9,9 @@ import { ref, watch, defineAsyncComponent } from "vue";
 import store from "../store/index.js";
 export default {
   name: "Chat",
-  // components: {
-  //   ChatRoom: defineAsyncComponent(() => import("./Chat/ChatRoom.vue")),
-  // },
+  components: {
+    ChatRoom: defineAsyncComponent(() => import("./Chat/ChatRoom.vue")),
+  },
 };
 </script>
 

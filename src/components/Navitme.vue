@@ -66,9 +66,9 @@ export default {
     //监听同浏览器是否有多个标签,有则,登录时,同时登录所有标签!
     socket.addEventListener("message", function (data) {
       const values = JSON.parse(data.data);
-      console.log(values);
       if (values.code == 10 && values.id == localStorage.getItem("Id")) {
         store.commit("setLoader", 2); //触发登录状态改变
+        router.push("/");
       }
     });
     ////////////////////////////////////////////////////////////////////
@@ -94,7 +94,6 @@ export default {
     watch(
       () => store.state.loader,
       newLoader => {
-        console.log(newLoader);
         loader.value = newLoader;
         if (loader.value) {
           const Token = `Bearer ${localStorage.getItem("Token")}`;

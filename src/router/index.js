@@ -91,9 +91,9 @@ export default router;
 
 router.beforeEach((to, from, next) => {
   if (to.name == "Login") {
-    //如果用户已经存在,那么将不允许重复登录
+    //如果用户已经存在
     if (localStorage.getItem("Token")) {
-      next(false);
+      next("/");
     }
   }
 
