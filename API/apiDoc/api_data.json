@@ -1,0 +1,295 @@
+[
+  {
+    "name": "接口模板",
+    "type": "get",
+    "url": "请求路径",
+    "title": "描述标题",
+    "group": "接口配置模板",
+    "description": "<p>API功能描述</p>",
+    "header": {
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"请求头描述\": \"请求头参数描述\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"id\": 请求头携带值详细配置\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n code:200,\n data:vsg.data\n}",
+          "type": "objcet"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  error: \"获取失败\"\n}",
+          "type": "objcet"
+        }
+      ]
+    },
+    "version": "1.0.0",
+    "filename": "doc/api.js",
+    "groupTitle": "接口配置模板"
+  },
+  {
+    "name": "查找用户",
+    "type": "get",
+    "url": "/User/useronce",
+    "title": "[查找用户]",
+    "group": "用户模块",
+    "description": "<p>用户查找其他用户信息</p>",
+    "header": {
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"用户TOKEN\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "params: {\n  userid: 用户唯一ID,\n }",
+          "type": "objcet"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n code:200,\n data:{\n     name:用户昵称,\n     userid:用户ID,\n }\n}",
+          "type": "objcet"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  code:404,\n  error: \"Not Found\"\n}",
+          "type": "objcet"
+        }
+      ]
+    },
+    "version": "1.0.0",
+    "filename": "doc/api.js",
+    "groupTitle": "用户模块"
+  },
+  {
+    "name": "用户注册",
+    "type": "post",
+    "url": "/UserInfo/info",
+    "title": "[用户注册]",
+    "group": "用户模块",
+    "description": "<p>用户提交注册信息</p>",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "data: {\n  name:用户名,\n  userid: 用户唯一ID,\n  password: 密码,\n  email: 邮箱,\n  code: 邮箱验证码,\n},",
+          "type": "objcet"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n code:200,\n mesg:\"注册成功\"\n}",
+          "type": "objcet"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  code:404,\n  error: \"Not Found\"\n}",
+          "type": "objcet"
+        }
+      ]
+    },
+    "version": "1.0.0",
+    "filename": "doc/api.js",
+    "groupTitle": "用户模块"
+  },
+  {
+    "name": "用户登录",
+    "type": "post",
+    "url": "/User/userNmae",
+    "title": "[用户登录]",
+    "group": "用户模块",
+    "description": "<p>用户登录</p>",
+    "header": {
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"用户TOKEN\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "data: {\n  userid: 用户唯一ID,\n   password: 密码,\n   code:SVG验证码,\n }",
+          "type": "objcet"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n code:200,\n mesg:\"登录成功\"\n Token:JWT\n}",
+          "type": "objcet"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  code:404,\n  error: \"Not Found\"\n}",
+          "type": "objcet"
+        }
+      ]
+    },
+    "version": "1.0.0",
+    "filename": "doc/api.js",
+    "groupTitle": "用户模块"
+  },
+  {
+    "name": "获取SVG验证码",
+    "type": "get",
+    "url": "/User/cap",
+    "title": "[获取验证码]",
+    "group": "用户模块",
+    "description": "<p>返回一个SVG的二进制流,放在HTML标签中</p>",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n code:200,\n data:vsg.data\n}",
+          "type": "objcet"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  error: \"获取失败\"\n}",
+          "type": "objcet"
+        }
+      ]
+    },
+    "version": "1.0.0",
+    "filename": "doc/api.js",
+    "groupTitle": "用户模块"
+  },
+  {
+    "name": "获取好友",
+    "type": "get",
+    "url": "/User/frends",
+    "title": "[好友列表获取]",
+    "group": "用户模块",
+    "description": "<p>获取好友列表详细信息</p>",
+    "header": {
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"用户TOKEN\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "params: {\n  userid: 用户唯一ID,\n }",
+          "type": "objcet"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n code:200,\n mesg:\"获取成功\"\n frendlist:好友列表数组\n}",
+          "type": "objcet"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  code:404,\n  error: \"Not Found\"\n}",
+          "type": "objcet"
+        }
+      ]
+    },
+    "version": "1.0.0",
+    "filename": "doc/api.js",
+    "groupTitle": "用户模块"
+  },
+  {
+    "name": "获取注册验证码",
+    "type": "get",
+    "url": "/UserInfo/code",
+    "title": "[获取注册验证码]",
+    "group": "用户模块",
+    "description": "<p>获取注册验证码用于验证码机器人注册</p>",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "params: {\n  email: 用户邮箱,\n }",
+          "type": "objcet"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n code:200,\n mesg:\"获取成功\"\n data:唯一验证码\n}",
+          "type": "objcet"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  code:404,\n  error: \"Not Found\"\n}",
+          "type": "objcet"
+        }
+      ]
+    },
+    "version": "1.0.0",
+    "filename": "doc/api.js",
+    "groupTitle": "用户模块"
+  }
+]

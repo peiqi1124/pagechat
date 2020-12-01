@@ -1,0 +1,23 @@
+$blue: rgb(83, 95, 163);
+@mixin Content-mid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // @include Content-mid;
+}
+@mixin Content-mid-space-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  // @include Content-mid-space-around;
+}
+@mixin Content-align-items-center {
+  display: flex;
+  align-items: center;
+  // @include Content-align-items-center;
+}
+@mixin set-width-height($width, $height) {
+  width: $width;
+  height: $height;
+  // @include set-width-height(100%, 100%);
+}
