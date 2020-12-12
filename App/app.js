@@ -66,7 +66,7 @@ wss.on("connection", function connection(ws) {
   ws.on("message", function (event) {
     const datas = JSON.parse(event);
     if (datas.eventName == "addFrend") {
-      sendMesg(wss, ws, JSON.stringify({ eventName: "frendRequst", myId: datas.hisId, hisId: datas.myId }));
+      sendMesg(wss, ws, JSON.stringify({ eventName: "friendRequst", myId: datas.hisId, hisId: datas.myId }));
     }
   });
 

@@ -15,9 +15,9 @@
         <!--content-left-items-->
 
         <div class="content-left-items animate__animated animate__zoomIn" v-show="indexs == 0">
-          <div class="content-item addFriendMesag" v-for="(item, index) in 1" :key="index">
+          <div class="content-item addFriendMesag" v-for="item in friendRequst" :key="item.id">
             <div class="addMesag">
-              {{}}
+              {{ item.userId }}
               <br />
               请求添加好友
             </div>
@@ -79,6 +79,7 @@
 </template>
 
 <script>
+import DB from "../../indexDB/indexDB.js";
 import socket from "../../components/socket.js";
 import instance from "../../api/api.js";
 import { ref, reactive } from "vue";
@@ -86,15 +87,22 @@ export default {
   name: "ChatRoom",
   data() {
     return {
-      frendRequst: [],
+      friendRequst: [],
     };
   },
   mounted() {
     //添加好友请求消息
     socket.addEventListener("message", event => {
       const datas = JSON.parse(event.data);
-      if (datas.eventName == "frendRequst") {
-        this.Messages.push(datas);
+      if (datas.eventName == "friendRequst") {
+        console.log(datas.hisId);
+        DB.friendRequst.add({ userId: datas.hisId }).then(() => {
+          console.log("添加成功");
+          DB.friendRequst.get({ userId: datas.hisId }).then(value => {
+            console.log("读取成功", value);
+            this.friendRequst.push(value);
+          });
+        });
       }
     });
   },
@@ -219,7 +227,6 @@ export default {
   }
   .addMesag {
     width: 70%;
-    border: 1px solid red;
     height: 100%;
     @include set-text-none;
   }
