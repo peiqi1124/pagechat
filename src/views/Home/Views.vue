@@ -20,6 +20,18 @@ import "../../flv/flv.js";
 import { ref } from "vue";
 export default {
   name: "Views",
+  mounted() {
+    if (flvjs.isSupported()) {
+      let videoElement = document.querySelector(".video-content");
+      let flvPlayer = flvjs.createPlayer({
+        type: "flv",
+        url: "http://1011.hlsplay.aodianyun.com/demo/game.flv",
+      });
+      flvPlayer.attachMediaElement(videoElement);
+      flvPlayer.load();
+      // flvPlayer.play();
+    }
+  },
   data() {
     return {
       indexs: 0,

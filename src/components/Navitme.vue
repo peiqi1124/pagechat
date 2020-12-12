@@ -109,7 +109,7 @@ export default {
               store.commit("setInfo", data.data);
               info.name = data.data.name;
               info.id = data.data.id;
-              info.headimg = data.data.headimg;
+              info.headimg = data.data.headImg;
             });
         }
       }
@@ -140,6 +140,7 @@ function SignOut(loader, socket, info) {
     if (result) {
       const Token = `Bearer ${localStorage.getItem("Token")}`;
       localStorage.removeItem("Token"); //清除token
+      localStorage.removeItem("Id"); //清除用户id
       loader.value = false; //设置登录状态
       socket.send(JSON.stringify({ code: 20, id: info.id })); //通知所有同账号下线
       window.location.reload(true); //页面刷新,不然下次登录将会BUG

@@ -79,9 +79,10 @@ router.get("/userinfo", async ctx => {
   console.log("查询数据");
   let USER_INFOS = await setData.USERS.find({ userid: ctx.query.id }); //查询数据库
   ctx.body = {
+    code: 200,
     name: USER_INFOS[0].name,
     id: USER_INFOS[0].userid,
-    headimg: USER_INFOS[0].headimg,
+    headImg: USER_INFOS[0].headimg,
   };
 });
 

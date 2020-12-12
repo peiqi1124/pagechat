@@ -42,6 +42,7 @@ wss.on("connection", function connection(ws) {
   console.log("连接成功");
 
   ws.on("message", function incoming(data) {
+    console.log(1);
     const values = JSON.parse(data);
     if (values.code == 10) {
       wss.clients.forEach(itm => {
@@ -51,6 +52,7 @@ wss.on("connection", function connection(ws) {
   });
 
   ws.on("message", function incoming(data) {
+    console.log(2);
     const values = JSON.parse(data);
     if (values.code == 20) {
       wss.clients.forEach(itm => {
@@ -59,5 +61,24 @@ wss.on("connection", function connection(ws) {
     }
   });
 
-  ///
+  //添加好友
+
+  ws.on("message", function (event) {
+    const datas = JSON.parse(event);
+    if (datas.eventName == "addFrend") {
+      sendMesg(wss, ws, JSON.stringify({ eventName: "frendRequst", myId: datas.hisId, hisId: datas.myId }));
+    }
+  });
+
+  //////
 });
+
+function sendMesg(Wss, ws, data) {
+  console.log(data, 1111);
+  Wss.clients.forEach(item => {
+    if (ws !== item && item.readyState == WebSocket.OPEN) {
+      console.log("发送");
+      item.send(data);
+    }
+  });
+}
