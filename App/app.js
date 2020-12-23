@@ -9,6 +9,7 @@ const Login = require("./router/login");
 const Sgin = require("./router/sgin");
 const JWT_SECRET = require("./modles/data");
 const WebSocket = require("ws");
+const setData = require("./modles/mongo.js"); //mongo模板
 
 app.use(
   Jwt({
@@ -66,6 +67,24 @@ wss.on("connection", function connection(ws) {
   ws.on("message", function (event) {
     const datas = JSON.parse(event);
     if (datas.eventName == "addFrend") {
+      sendMesg(wss, ws, JSON.stringify({ eventName: "friendRequst", myId: datas.hisId, hisId: datas.myId }));
+    }
+  });
+
+  //同意添加好友
+  ws.on("message", async function (event) {
+    const datas = JSON.parse(event);
+    if (datas.eventName == "addMyFriend") {
+      let myIdData = await setData.USERS.find({ userid: datas.myId }); //查询数据库
+      let hisIdData = await setData.USERS.find({ userid: datas.hisId }); //查询数据库
+      myIdData.updateOne(
+        { _id: "5f8ad9ab096d7f2514e62135" },
+        {
+          name: "张三",
+          userNmae: "654321",
+          password: "654321",
+        }
+      );
       sendMesg(wss, ws, JSON.stringify({ eventName: "friendRequst", myId: datas.hisId, hisId: datas.myId }));
     }
   });

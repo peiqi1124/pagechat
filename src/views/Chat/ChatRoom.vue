@@ -22,7 +22,7 @@
               请求添加好友
             </div>
             <div>
-              <button class="ok">同意</button>
+              <button class="ok" @click="addMyFriend">同意</button>
               <br />
               <button class="close">拒绝</button>
             </div>
@@ -144,6 +144,14 @@ export default {
     //添加好友
     function addFrends() {
       const eventNames = "addFrend";
+      const myIds = localStorage.getItem("Id");
+      const hisIds = hisId.value;
+      socket.send(JSON.stringify({ eventName: eventNames, myId: myIds, hisId: hisIds }));
+    }
+
+    //同意添加好友
+    function addMyFriend() {
+      const eventNames = "addMyFriend";
       const myIds = localStorage.getItem("Id");
       const hisIds = hisId.value;
       socket.send(JSON.stringify({ eventName: eventNames, myId: myIds, hisId: hisIds }));
